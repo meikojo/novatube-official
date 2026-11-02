@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaTube — الموقع الرسمي للتحميل والتحديثات | Nova Studio</title>
+  <meta name="description" content="حمّل أحدث إصدار رسمي من تطبيق NovaTube بصيغة APK لأندرويد. مشاهدة يوتيوب وشورتس بدون إعلانات مزعجة، وتحميل الفيديوهات وقوائم التشغيل بجودة تصل إلى 4K و MP3." />
+  <meta name="theme-color" content="#08090D" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --surface-canvas: #08090D;
+      --surface-elevated: #10131C;
+      --surface-interactive: #171B26;
+      --surface-hover: #1E2331;
+      --ink-primary: #F3F4F6;
+      --ink-secondary: #9CA3AF;
+      --ink-muted: #6B7280;
+      --accent-amber: #F59E0B;
+      --accent-amber-hover: #D97706;
+      --accent-amber-soft: rgba(245, 158, 11, 0.12);
+      --status-verified: #10B981;
+      --border-hairline: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.15);
+      --font-sans: 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --container-max: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--surface-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--surface-canvas);
+      color: var(--ink-primary);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: inherit;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+    }
+
+    .container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    /* Top Navigation Bar */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(8, 9, 13, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      gap: 16px;
+    }
+
+    .brand-identity {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+
+    .brand-titles {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-studio-tag {
+      font-size: 0.75rem;
+      color: var(--ink-secondary);
+      font-weight: 400;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 0.92rem;
+      color: var(--ink-secondary);
+    }
+
+    .nav-links a {
+      transition: color 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink-primary);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--surface-interactive);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--surface-hover);
+      border-color: var(--accent-amber);
+    }
+
+    /* Hero Release Section */
+    .hero-section {
+      padding-block: 56px 64px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .release-status-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 12px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: 6px;
+      font-size: 0.84rem;
+      color: var(--ink-secondary);
+      margin-bottom: 20px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--status-verified);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+    }
+
+    .hero-headline {
+      font-size: clamp(1.95rem, 3.6vw, 2.85rem);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--ink-primary);
+      margin-bottom: 18px;
+      max-width: 24ch;
+    }
+
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--ink-secondary);
+      max-width: 56ch;
+      margin-bottom: 28px;
+      line-height: 1.75;
+    }
+
+    /* Primary Download Terminal Box */
+    .download-terminal {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+
+    .download-actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .btn-download-apk {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 14px 24px;
+      background: var(--accent-amber);
+      color: #08090D;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 8px;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+      flex: 1 1 250px;
+    }
+
+    .btn-download-apk:hover {
+      background: var(--accent-amber-hover);
+    }
+
+    .btn-download-apk:active {
+      transform: translateY(1px);
+    }
+
+    .btn-secondary-store {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 18px;
+      background: var(--surface-interactive);
+      border: 1px solid var(--border-hairline);
+      color: var(--ink-primary);
+      font-weight: 500;
+      font-size: 0.92rem;
+      border-radius: 8px;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-secondary-store:hover {
+      background: var(--surface-hover);
+      border-color: var(--border-strong);
+    }
+
+    .release-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-hairline);
+      font-size: 0.82rem;
+    }
+
+    .meta-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .meta-label {
+      color: var(--ink-muted);
+      font-size: 0.76rem;
+    }
+
+    .meta-val {
+      color: var(--ink-primary);
+      font-weight: 600;
+    }
+
+    .checksum-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border-hairline);
+      font-size: 0.78rem;
+      color: var(--ink-secondary);
+    }
+
+    .checksum-hash {
+      font-family: var(--font-mono);
+      color: var(--ink-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 290px;
+    }
+
+    .copy-hash-btn {
+      font-size: 0.76rem;
+      color: var(--accent-amber);
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--accent-amber-soft);
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    /* Supported Platforms Strip */
+    .supported-platforms {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.84rem;
+      color: var(--ink-secondary);
+    }
+
+    .platform-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--ink-primary);
+      font-weight: 500;
+    }
+
+    .platform-pill svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    /* Interactive Hardware Preview Column */
+    .hardware-preview-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .preview-mode-switcher {
+      display: inline-flex;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: 8px;
+      padding: 4px;
+      margin-bottom: 16px;
+      gap: 4px;
+    }
+
+    .mode-tab {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      transition: all 0.15s ease;
+    }
+
+    .mode-tab.active {
+      background: var(--surface-interactive);
+      color: var(--ink-primary);
+      border: 1px solid var(--border-strong);
+    }
+
+    .phone-chassis {
+      width: 100%;
+      max-width: 340px;
+      background: #0C0E14;
+      border: 1px solid var(--border-strong);
+      border-radius: 28px;
+      padding: 12px;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55);
+    }
+
+    .phone-screen {
+      background: #08090D;
+      border: 1px solid var(--border-hairline);
+      border-radius: 20px;
+      overflow: hidden;
+      min-height: 450px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .app-statusbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: #10131C;
+      border-bottom: 1px solid var(--border-hairline);
+      font-size: 0.75rem;
+    }
+
+    .app-statusbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .channel-switcher-pill {
+      font-size: 0.68rem;
+      padding: 2px 8px;
+      border-radius: 99px;
+      background: var(--surface-interactive);
+      border: 1px solid var(--border-hairline);
+      color: var(--ink-secondary);
+    }
+
+    .screen-pane {
+      display: none;
+      padding: 14px;
+      flex: 1;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .screen-pane.active {
+      display: flex;
+    }
+
+    /* Mock UI inside phone */
+    .mock-video-card {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .mock-thumb-16x9 {
+      height: 118px;
+      background: linear-gradient(135deg, #161B28 0%, #0E111A 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .mock-duration {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.68rem;
+      font-family: var(--font-mono);
+    }
+
+    .mock-dl-fab {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: var(--accent-amber);
+      color: #08090D;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    .mock-card-body {
+      padding: 10px;
+      font-size: 0.78rem;
+    }
+
+    .mock-card-title {
+      font-weight: 600;
+      color: var(--ink-primary);
+      margin-bottom: 3px;
+    }
+
+    .mock-card-sub {
+      font-size: 0.7rem;
+      color: var(--ink-secondary);
+    }
+
+    .mock-shorts-shelf {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .mock-short-item {
+      height: 126px;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #1B2030 0%, #0D1017 100%);
+      border: 1px solid var(--border-hairline);
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 0.68rem;
+    }
+
+    .short-badge {
+      align-self: flex-start;
+      background: rgba(239, 68, 68, 0.2);
+      color: #F87171;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 0.62rem;
+      font-weight: 600;
+    }
+
+    .quality-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 10px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: 8px;
+      font-size: 0.76rem;
+    }
+
+    .quality-row.selected {
+      border-color: var(--accent-amber);
+      background: var(--accent-amber-soft);
+    }
+
+    .app-bottomnav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 8px 6px;
+      background: #10131C;
+      border-top: 1px solid var(--border-hairline);
+      text-align: center;
+      font-size: 0.68rem;
+      color: var(--ink-secondary);
+    }
+
+    .app-bottomnav span.active {
+      color: var(--accent-amber);
+      font-weight: 600;
+    }
+
+    /* Section Structure */
+    .section-block {
+      padding-block: 64px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--ink-secondary);
+      max-width: 58ch;
+      margin-top: 6px;
+    }
+
+    /* Live Changelog & OTA Architecture */
+    .release-ledger {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .changelog-box {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .changelog-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .version-tag-large {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .badge-latest {
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 4px;
+      background: var(--accent-amber-soft);
+      color: var(--accent-amber);
+    }
+
+    .changelog-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .changelog-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: var(--ink-primary);
+    }
+
+    .changelog-list li svg {
+      width: 18px;
+      height: 18px;
+      color: var(--accent-amber);
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .previous-releases {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .prev-release-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 8px;
+      font-size: 0.85rem;
+      color: var(--ink-secondary);
+    }
+
+    .ota-explainer-card {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: 12px;
+      padding: 22px;
+    }
+
+    .ota-explainer-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ota-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 16px;
+      font-size: 0.86rem;
+      color: var(--ink-secondary);
+    }
+
+    .ota-step-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--surface-interactive);
+      border: 1px solid var(--border-strong);
+      color: var(--ink-primary);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Engineering Capabilities Table/Grid */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--border-hairline);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--surface-elevated);
+    }
+
+    .spec-cell {
+      padding: 24px;
+      border-left: 1px solid var(--border-hairline);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .spec-cell:nth-child(3n) {
+      border-left: none;
+    }
+
+    .spec-cell:nth-last-child(-n+3) {
+      border-bottom: none;
+    }
+
+    .spec-icon {
+      width: 22px;
+      height: 22px;
+      color: var(--accent-amber);
+      margin-bottom: 14px;
+    }
+
+    .spec-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--ink-primary);
+    }
+
+    .spec-desc {
+      font-size: 0.88rem;
+      color: var(--ink-secondary);
+      line-height: 1.65;
+    }
+
+    /* Official Studio Apps Directory */
+    .studio-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .studio-table th,
+    .studio-table td {
+      padding: 16px 20px;
+      text-align: right;
+      border-bottom: 1px solid var(--border-hairline);
+      font-size: 0.9rem;
+    }
+
+    .studio-table th {
+      background: var(--surface-interactive);
+      color: var(--ink-secondary);
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    .studio-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .status-pill-active {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 99px;
+      background: rgba(16, 185, 129, 0.14);
+      color: #34D399;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .status-pill-soon {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 99px;
+      background: var(--surface-interactive);
+      color: var(--ink-secondary);
+      font-size: 0.78rem;
+    }
+
+    /* Footer */
+    .site-footer {
+      padding-block: 40px;
+      font-size: 0.85rem;
+      color: var(--ink-secondary);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-links a:hover,
+    .footer-links button:hover {
+      color: var(--ink-primary);
+    }
+
+    /* Developer Update Generator Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      max-width: 540px;
+      width: 100%;
+      padding: 24px;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--ink-secondary);
+      margin-bottom: 6px;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--surface-canvas);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      color: var(--ink-primary);
+      font-family: inherit;
+      font-size: 0.88rem;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .release-ledger {
+        grid-template-columns: 1fr;
+      }
+      .specs-grid {
+        grid-template-columns: 1fr;
+      }
+      .spec-cell {
+        border-left: none;
+        border-bottom: 1px solid var(--border-hairline);
+      }
+      .release-meta-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="#" class="brand-identity">
+        <!-- Original NovaTube Vector Emblem -->
+        <svg class="brand-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="64" height="64" rx="16" fill="#10131C" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+          <circle cx="32" cy="32" r="22" stroke="#F59E0B" stroke-width="2.5" stroke-opacity="0.85"/>
+          <path d="M25 21.5L41 30.5L25 39.5V21.5Z" fill="#F3F4F6"/>
+          <path d="M32 34V45M32 45L27.5 40.5M32 45L36.5 40.5" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M45 17L46.2 20.3L49.5 21.5L46.2 22.7L45 26L43.8 22.7L40.5 21.5L43.8 20.3L45 17Z" fill="#F59E0B"/>
+        </svg>
+        <div class="brand-titles">
+          <div class="brand-name">
+            <bdi>NovaTube</bdi>
+          </div>
+          <span class="brand-studio-tag">إصدار رسمي من <bdi>Nova Studio</bdi></span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="التنقل الرئيسي">
+        <a href="#download">التحميل المباشر</a>
+        <a href="#changelog">سجل التحديثات</a>
+        <a href="#capabilities">المواصفات التقنية</a>
+        <a href="#studio-apps">تطبيقات الاستوديو</a>
+        <a href="./privacy-policy.html">سياسة الخصوصية</a>
+      </nav>
+
+      <a href="./NovaTube_Latest.apk" download="NovaTube_Latest.apk" class="nav-cta" id="navDownloadBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+        </svg>
+        <span>تحميل <bdi id="navVersionText">APK v1.3.0</bdi></span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero & Release Terminal -->
+  <main>
+    <section class="hero-section" id="download">
+      <div class="container hero-grid">
+        <!-- Right Column (RTL Primary): Editorial Release Info & Direct APK Download -->
+        <div>
+          <div class="release-status-bar">
+            <span class="status-dot"></span>
+            <span>الإصدار المستقر متاح للتحميل المباشر</span>
+            <span>•</span>
+            <bdi class="mono" id="heroReleaseDate">2026-11-02</bdi>
+          </div>
+
+          <h1 class="hero-headline">
+            مشاهدة يوتيوب وشورتس بدون إعلانات مزعجة، مع تحميل مباشر لكل الجودات.
+          </h1>
+
+          <p class="hero-lead">
+            يجمع <bdi>NovaTube</bdi> بين مشغل فيديو سريع يحجب إعلانات يوتيوب التلقائية وبين محرك تحميل مباشر للفيديوهات وقوائم التشغيل الكاملة بصيغ <bdi>MP4</bdi> حتى <bdi>1080p / 4K</bdi> والصوتيات <bdi>MP3 320kbps</bdi>.
+          </p>
+
+          <!-- Download Terminal -->
+          <div class="download-terminal">
+            <div class="download-actions-row">
+              <a href="./NovaTube_Latest.apk" download="NovaTube_Latest.apk" class="btn-download-apk" id="mainApkDownloadBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <span>تحميل ملف التطبيق المباشر (<bdi>APK</bdi>)</span>
+              </a>
+
+              <a href="#changelog" class="btn-secondary-store">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/>
+                  <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                <span>سجل تغييرات الإصدار</span>
+              </a>
+            </div>
+
+            <div class="release-meta-grid">
+              <div class="meta-cell">
+                <span class="meta-label">رقم الإصدار</span>
+                <span class="meta-val"><bdi class="mono" id="metaVersion">v1.3.0 (Build 3)</bdi></span>
+              </div>
+              <div class="meta-cell">
+                <span class="meta-label">حجم الحزمة</span>
+                <span class="meta-val"><bdi class="mono" id="metaSize">19.8 MB</bdi></span>
+              </div>
+              <div class="meta-cell">
+                <span class="meta-label">النظام المطلوب</span>
+                <span class="meta-val"><bdi class="mono" id="metaAndroid">Android 8.0+</bdi></span>
+              </div>
+              <div class="meta-cell">
+                <span class="meta-label">الحماية والتوقيع</span>
+                <span class="meta-val">موقّع رقمياً <bdi class="mono">RSA-2048</bdi></span>
+              </div>
+            </div>
+
+            <div class="checksum-bar">
+              <span>بصمة التحقق <bdi class="mono">SHA-256</bdi>:</span>
+              <span class="checksum-hash" id="shaHashText">670fc978aafe11acf2de26c04f30ac6fb6403ab4a83af23a988b892c0a626b86</span>
+              <button type="button" class="copy-hash-btn" id="copyHashBtn">نسخ البصمة</button>
+            </div>
+          </div>
+
+          <!-- Supported Platforms -->
+          <div class="supported-platforms">
+            <span>المنصات المدعومة للتحميل المباشر:</span>
+            <span class="platform-pill">
+              <svg viewBox="0 0 24 24" fill="#EF4444"><path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.5.6c-1 .3-1.7 1.1-2 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 1 1.8 2 2.1 1.9.6 9.5.6 9.5.6s7.6 0 9.5-.6c1-.3 1.7-1.1 2-2.1.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.4 3.6-6.4 3.6z"/></svg>
+              <bdi>YouTube &amp; Shorts</bdi>
+            </span>
+            <span class="platform-pill">
+              <svg viewBox="0 0 24 24" fill="#38BDF8"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+              <bdi>TikTok (بدون علامة)</bdi>
+            </span>
+            <span class="platform-pill">
+              <svg viewBox="0 0 24 24" fill="#F472B6"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <bdi>Instagram &amp; Facebook</bdi>
+            </span>
+          </div>
+        </div>
+
+        <!-- Left Column: Interactive Live Interface Preview -->
+        <div class="hardware-preview-wrap">
+          <div class="preview-mode-switcher" role="tablist" aria-label="معاينة شاشات التطبيق">
+            <button type="button" class="mode-tab active" data-pane="pane-home">الرئيسية و Shorts</button>
+            <button type="button" class="mode-tab" data-pane="pane-download">خيارات التحميل</button>
+            <button type="button" class="mode-tab" data-pane="pane-account">تبديل القنوات</button>
+          </div>
+
+          <div class="phone-chassis">
+            <div class="phone-screen">
+              <div class="app-statusbar">
+                <div class="app-statusbar-brand">
+                  <span style="color:var(--accent-amber);">●</span>
+                  <bdi>NovaTube</bdi>
+                </div>
+                <span class="channel-switcher-pill">القناة النشطة: حسابك الرسمي</span>
+              </div>
+
+              <!-- Pane 1: Home & Shorts 9:16 -->
+              <div class="screen-pane active" id="pane-home">
+                <div class="mock-video-card">
+                  <div class="mock-thumb-16x9">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="#F3F4F6"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    <span class="mock-duration">14:28</span>
+                    <span class="mock-dl-fab">تحميل مباشر ↓</span>
+                  </div>
+                  <div class="mock-card-body">
+                    <div class="mock-card-title">مراجعة شاملة وتجربة تشغيل 4K بدون فواصل إعلانية</div>
+                    <div class="mock-card-sub">تقنية بلس • <bdi>142K</bdi> مشاهدة • قائمة تشغيل كاملة</div>
+                  </div>
+                </div>
+
+                <div style="font-size:0.75rem; font-weight:700; color:var(--ink-secondary); display:flex; justify-content:space-between;">
+                  <span>مقاطع <bdi>Shorts</bdi> العمودية (<bdi>9:16</bdi>)</span>
+                  <span style="color:var(--accent-amber);">تمرير لا نهائي</span>
+                </div>
+
+                <div class="mock-shorts-shelf">
+                  <div class="mock-short-item">
+                    <span class="short-badge">Shorts</span>
+                    <span>مشغل عمودي كامل الشاشة</span>
+                  </div>
+                  <div class="mock-short-item">
+                    <span class="short-badge">Shorts</span>
+                    <span>تحميل فوري بصيغة MP4</span>
+                  </div>
+                  <div class="mock-short-item">
+                    <span class="short-badge">Shorts</span>
+                    <span>بدون إعلانات يوتيوب</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pane 2: Download & Playlist Quality Sheet -->
+              <div class="screen-pane" id="pane-download">
+                <div style="font-size:0.82rem; font-weight:700; margin-bottom:2px;">اختر صيغة التحميل ومسار الحفظ</div>
+                <div style="font-size:0.7rem; color:var(--ink-secondary); margin-bottom:6px;">
+                  المسار: <bdi class="mono">/Download/NovaTube</bdi> (قابل للتخصيص)
+                </div>
+
+                <div class="quality-row selected">
+                  <div>
+                    <div style="font-weight:700;"><bdi>MP4 Full HD — 1080p</bdi></div>
+                    <div style="font-size:0.68rem; color:var(--ink-secondary);">دمج تلقائي للصوت والفيديو عبر MediaMuxer</div>
+                  </div>
+                  <span class="mono" style="font-size:0.74rem; color:var(--accent-amber);">48.4 MB</span>
+                </div>
+
+                <div class="quality-row">
+                  <div>
+                    <div style="font-weight:600;"><bdi>MP4 HD — 720p</bdi></div>
+                    <div style="font-size:0.68rem; color:var(--ink-secondary);">متوازن وسريع للتحميل</div>
+                  </div>
+                  <span class="mono" style="font-size:0.74rem;">24.1 MB</span>
+                </div>
+
+                <div class="quality-row">
+                  <div>
+                    <div style="font-weight:600;"><bdi>MP3 Audio — 320kbps</bdi></div>
+                    <div style="font-size:0.68rem; color:var(--ink-secondary);">ملف صوتي نقي للموسيقى والبودكاست</div>
+                  </div>
+                  <span class="mono" style="font-size:0.74rem;">8.6 MB</span>
+                </div>
+
+                <div class="quality-row">
+                  <div>
+                    <div style="font-weight:600;">تحميل قائمة التشغيل بالكامل (<bdi>Playlist</bdi>)</div>
+                    <div style="font-size:0.68rem; color:var(--ink-secondary);">تحديد كل الحلقات وتحميلها دفعة واحدة</div>
+                  </div>
+                  <span style="font-size:0.72rem; color:var(--status-verified);">متاح</span>
+                </div>
+              </div>
+
+              <!-- Pane 3: Multi-Channel Account Switcher -->
+              <div class="screen-pane" id="pane-account">
+                <div style="font-size:0.82rem; font-weight:700;">إدارة حساب يوتيوب وتبديل القنوات</div>
+                <div style="font-size:0.72rem; color:var(--ink-secondary);">
+                  سجّل دخولك لعرض اشتراكاتك وتبديل قنواتك الرسمية على نفس الحساب بضغطة واحدة.
+                </div>
+
+                <div class="quality-row selected">
+                  <div>
+                    <div style="font-weight:700;">القناة الأساسية (نشطة الآن)</div>
+                    <div style="font-size:0.68rem; color:var(--ink-secondary);">مزامنة الاشتراكات وسجل المشاهدة</div>
+                  </div>
+                  <span style="font-size:0.7rem; color:var(--accent-amber);">نشط</span>
+                </div>
+
+                <div class="quality-row">
+                  <div>
+                    <div style="font-weight:600;">القناة الفرعية الثانية</div>
+                    <div style="font-size:0.68rem; color:var(--ink-secondary);">تبديل فوري عبر YouTube Channel Switcher</div>
+                  </div>
+                  <span style="font-size:0.7rem; color:var(--ink-secondary);">تبديل</span>
+                </div>
+
+                <div class="quality-row">
+                  <div>
+                    <div style="font-weight:600;">الخزنة الخاصة المشفرة (<bdi>PIN</bdi>)</div>
+                    <div style="font-size:0.68rem; color:var(--ink-secondary);">حماية الفيديوهات المحملة برقم سري</div>
+                  </div>
+                  <span style="font-size:0.7rem; color:var(--status-verified);">مفعّل</span>
+                </div>
+              </div>
+
+              <div class="app-bottomnav">
+                <span class="active">الرئيسية</span>
+                <span>Shorts</span>
+                <span>التحميلات</span>
+                <span>حسابي</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Changelog & Automatic OTA Update Architecture -->
+    <section class="section-block" id="changelog">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">سجل الإصدارات والتحديث الهوائي التلقائي</h2>
+            <p class="section-subtitle">
+              يقرأ التطبيق هذا السجل مباشرة من ملف <bdi class="mono">version.json</bdi> لإشعار المستخدمين بأي إصدار جديد فور رفعه على الموقع.
+            </p>
+          </div>
+        </div>
+
+        <div class="release-ledger">
+          <div class="changelog-box">
+            <div class="changelog-header">
+              <div class="version-tag-large">
+                <span>الإصدار <bdi class="mono" id="changelogVersionTitle">v1.3.0</bdi></span>
+                <span class="badge-latest">أحدث إصدار رسمي</span>
+              </div>
+              <span class="mono" style="font-size:0.84rem; color:var(--ink-secondary);" id="changelogDate">2026-11-02</span>
+            </div>
+
+            <ul class="changelog-list" id="changelogList">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>مشغل <bdi>Shorts</bdi> عمودي كامل (<bdi>9:16</bdi>) مطابق ليوتيوب شورتس وتيك توك مع سحب سريع للأعلى والأسفل.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>مانع إعلانات يوتيوب المزعجة تلقائياً داخل المشغل واستبدالها بدعم خفيف للتطبيق.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>تحديث تلقائي ذكي داخل التطبيق (<bdi>OTA Update</bdi>) يتحقق من هذا الموقع بضغطة واحدة.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>دعم تسجيل الدخول بحساب يوتيوب والتبديل بين القنوات المتعددة وتحميل قوائم التشغيل الكاملة.</span>
+              </li>
+            </ul>
+
+            <div class="previous-releases">
+              <div class="prev-release-row">
+                <span><bdi class="mono">v1.2.0</bdi> — محرك التحميل الحقيقي ودمج <bdi>MediaMuxer HD</bdi></span>
+                <span class="mono">Build 2</span>
+              </div>
+              <div class="prev-release-row">
+                <span><bdi class="mono">v1.1.0</bdi> — الإطلاق الأساسي ودعم الخزنة السرية</span>
+                <span class="mono">Build 1</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="ota-explainer-card">
+            <h3 class="ota-explainer-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              <span>خطوات التثبيت والتحديث السريع</span>
+            </h3>
+            <p style="font-size:0.84rem; color:var(--ink-secondary);">
+              لا يحتاج المستخدم إلى إعادة البحث عن الموقع عند صدور تحديث جديد؛ التطبيق يتكفل بالتنبيه والتحميل المباشر.
+            </p>
+
+            <ol class="ota-steps">
+              <li class="ota-step-item">
+                <span class="step-num">1</span>
+                <span>اضغط على زر <strong>تحميل ملف التطبيق المباشر (<bdi>APK</bdi>)</strong> في أعلى الصفحة.</span>
+              </li>
+              <li class="ota-step-item">
+                <span class="step-num">2</span>
+                <span>افتح الملف المحمّل على هاتفك الأندرويد ووافق على التثبيت.</span>
+              </li>
+              <li class="ota-step-item">
+                <span class="step-num">3</span>
+                <span>عند توفر إصدار أحدث مستقبلاً، ستظهر لك نافذة التحديث داخل التطبيق مباشرة لتثبيته بضغطة واحدة.</span>
+              </li>
+            </ol>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Capabilities Grid -->
+    <section class="section-block" id="capabilities">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">هندسة مبنية للاستخدام اليومي البديل ليوتيوب</h2>
+            <p class="section-subtitle">
+              صُمم <bdi>NovaTube</bdi> ليعمل كمشغل أساسي خفيف وسريع على كافة هواتف أندرويد مع أدوات تحميل احترافية.
+            </p>
+          </div>
+        </div>
+
+        <div class="specs-grid">
+          <div class="spec-cell">
+            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="6" y="2" width="12" height="20" rx="2"/>
+              <line x1="12" y1="18" x2="12.01" y2="18"/>
+            </svg>
+            <h3 class="spec-title">مشغل <bdi>Shorts</bdi> عمودي أصلي</h3>
+            <p class="spec-desc">
+              عند فتح أي فيديو قصير، يتحول المشغل تلقائياً إلى الوضع العمودي الكامل (<bdi>9:16</bdi>) مع أزرار التفاعل والتحميل الجانبية تماماً مثل تطبيق يوتيوب الأصلي.
+            </p>
+          </div>
+
+          <div class="spec-cell">
+            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+            <h3 class="spec-title">تخطي إعلانات يوتيوب المزعجة</h3>
+            <p class="spec-desc">
+              يعمل درع الحماية المدمج على كتم وتخطي فواصل يوتيوب الإعلانية تلقائياً أثناء المشاهدة، مع نظام دعم خفيف وغير مزعج لتطوير التطبيق.
+            </p>
+          </div>
+
+          <div class="spec-cell">
+            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            <h3 class="spec-title">تحميل القوائم واختيار المسار</h3>
+            <p class="spec-desc">
+              إمكانية تحديد قائمة تشغيل كاملة (<bdi>Playlist</bdi>) وتحميلها دفعة واحدة بصيغة صوت أو فيديو، مع حرية اختيار مجلد الحفظ على الهاتف أو الذاكرة الخارجية.
+            </p>
+          </div>
+
+          <div class="spec-cell">
+            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <h3 class="spec-title">مزامنة الحساب وتبديل القنوات</h3>
+            <p class="spec-desc">
+              سجّل دخولك بحساب جوجل لعرض توصياتك الحقيقية والاشتراكات، مع إمكانية التبديل السلس بين جميع القنوات المرتبطة بنفس الحساب.
+            </p>
+          </div>
+
+          <div class="spec-cell">
+            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <polygon points="23 7 16 12 23 17 23 7"/>
+              <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+            </svg>
+            <h3 class="spec-title">دمج صوت وفيديو <bdi>1080p HD</bdi></h3>
+            <p class="spec-desc">
+              يعتمد التطبيق على محرك <bdi>Android MediaMuxer</bdi> لدمج مسارات الفيديو عالية الدقة مع الصوت النقي محلياً على جهازك بسرعة فائقة.
+            </p>
+          </div>
+
+          <div class="spec-cell">
+            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <h3 class="spec-title">خزنة خاصة برقم سري</h3>
+            <p class="spec-desc">
+              قسم مدمج ومنظم لحفظ مقاطع الفيديو والملفات الصوتية الخاصة بك بكلمة مرور (<bdi>PIN</bdi>) بعيداً عن معرض الصور العام.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Official Studio Apps Directory -->
+    <section class="section-block" id="studio-apps">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">دليل إصدارات <bdi>Nova Studio</bdi></h2>
+            <p class="section-subtitle">
+              البوابة الرسمية الموحدة لجميع تطبيقاتنا المعتمدة وملفات التحقق الخاصة بالمتاجر الرسمية (<bdi>OPPO App Market</bdi> و <bdi>Google AdMob</bdi>).
+            </p>
+          </div>
+        </div>
+
+        <table class="studio-table">
+          <thead>
+            <tr>
+              <th>اسم التطبيق</th>
+              <th>المعرّف الرسمي (<bdi>Package ID</bdi>)</th>
+              <th>أحدث إصدار</th>
+              <th>الحالة</th>
+              <th>التحميل المباشر</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <strong><bdi>NovaTube</bdi></strong>
+                <div style="font-size:0.78rem; color:var(--ink-secondary);">مشغل يوتيوب وشورتس ومحمل الفيديوهات وقوائم التشغيل</div>
+              </td>
+              <td><bdi class="mono">com.novatube.app</bdi></td>
+              <td><bdi class="mono" id="tableVersion">v1.3.0</bdi></td>
+              <td><span class="status-pill-active">● متاح للتحميل</span></td>
+              <td>
+                <a href="./NovaTube_Latest.apk" download="NovaTube_Latest.apk" style="color:var(--accent-amber); font-weight:600;">
+                  تحميل <bdi>APK</bdi> ↓
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong><bdi>NovaPlayer Pro</bdi></strong>
+                <div style="font-size:0.78rem; color:var(--ink-secondary);">مشغل وسائط محلي متقدم مع دعم الترجمات والصوت المحيطي</div>
+              </td>
+              <td><bdi class="mono">com.novastudio.player</bdi></td>
+              <td><bdi class="mono">—</bdi></td>
+              <td><span class="status-pill-soon">قيد التطوير</span></td>
+              <td style="color:var(--ink-muted);">قريباً</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong><bdi>Nova Studio Official Portal</bdi></strong> — جميع الحقوق محفوظة © <bdi>2026</bdi>
+      </div>
+
+      <div class="footer-links">
+        <a href="./privacy-policy.html">سياسة الخصوصية</a>
+        <a href="./version.json" target="_blank" rel="noopener"><bdi class="mono">version.json</bdi></a>
+        <a href="./app-ads.txt" target="_blank" rel="noopener"><bdi class="mono">app-ads.txt</bdi></a>
+        <span style="color:var(--status-verified); font-size:0.78rem;">
+          ● محمي بتوقيع <bdi class="mono">RSA-2048 / SHA-256</bdi>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Interactive Phone Preview Mode Switcher
+    const modeTabs = document.querySelectorAll('.mode-tab');
+    const screenPanes = document.querySelectorAll('.screen-pane');
+
+    modeTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        modeTabs.forEach((t) => t.classList.remove('active'));
+        screenPanes.forEach((p) => p.classList.remove('active'));
+        tab.classList.add('active');
+        const target = document.getElementById(tab.getAttribute('data-pane'));
+        if (target) target.classList.add('active');
+      });
+    });
+
+    // Copy SHA-256 Hash
+    const copyHashBtn = document.getElementById('copyHashBtn');
+    const shaHashText = document.getElementById('shaHashText');
+    if (copyHashBtn && shaHashText) {
+      copyHashBtn.addEventListener('click', () => {
+        navigator.clipboard?.writeText(shaHashText.textContent.trim());
+        copyHashBtn.textContent = 'تم النسخ ✓';
+        setTimeout(() => { copyHashBtn.textContent = 'نسخ البصمة'; }, 2000);
+      });
+    }
+
+    // Dynamically Sync Page with ./version.json
+    async function syncLiveVersionData() {
+      try {
+        const res = await fetch('./version.json?t=' + Date.now(), { cache: 'no-store' });
+        if (!res.ok) return;
+        const data = await res.json();
+
+        if (data.latestVersionName) {
+          const vText = 'v' + data.latestVersionName;
+          document.getElementById('navVersionText').textContent = 'APK ' + vText;
+          document.getElementById('metaVersion').textContent = vText + (data.latestVersionCode ? ' (Build ' + data.latestVersionCode + ')' : '');
+          document.getElementById('changelogVersionTitle').textContent = vText;
+          document.getElementById('tableVersion').textContent = vText;
+        }
+        if (data.releaseDate) {
+          document.getElementById('heroReleaseDate').textContent = data.releaseDate;
+          document.getElementById('changelogDate').textContent = data.releaseDate;
+        }
+        if (data.fileSize) {
+          document.getElementById('metaSize').textContent = data.fileSize;
+        }
+        if (data.minAndroid) {
+          document.getElementById('metaAndroid').textContent = data.minAndroid;
+        }
+        if (data.sha256) {
+          document.getElementById('shaHashText').textContent = data.sha256;
+        }
+        if (data.apkDownloadUrl) {
+          document.getElementById('mainApkDownloadBtn').setAttribute('href', data.apkDownloadUrl);
+          document.getElementById('navDownloadBtn').setAttribute('href', data.apkDownloadUrl);
+        }
+        if (Array.isArray(data.changelogAr) && data.changelogAr.length > 0) {
+          const listEl = document.getElementById('changelogList');
+          listEl.innerHTML = '';
+          data.changelogAr.forEach((item) => {
+            const li = document.createElement('li');
+            li.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg><span></span>';
+            li.querySelector('span').textContent = item;
+            listEl.appendChild(li);
+          });
+        }
+      } catch (_) {
+        // Fallback to static baked-in v1.3.0 values when opened via file://
+      }
+    }
+    syncLiveVersionData();
+  </script>
+</body>
+</html>
